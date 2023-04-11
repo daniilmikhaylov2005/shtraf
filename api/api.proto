@@ -1,0 +1,25 @@
+syntax = "proto3";
+package api;
+
+option go_package = "github.com/daniilmikhaylov2005/shtraf/api";
+import "google/api/annotations.proto";
+
+service RusProfile {
+  rpc GetInfo(GetInfoRequest) returns (Company){
+    option (google.api.http) = {
+      post: "/rusprofile/info"
+      body: "inn"
+    };
+  }
+}
+
+message GetInfoRequest {
+  string inn = 1;
+}
+
+message Company {
+  string inn = 1;
+  string kpp = 2;
+  string title = 3;
+  string fullname_director = 4;
+}
